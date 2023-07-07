@@ -61,4 +61,5 @@ def display_grid(width):
 
     print()
 
-display_grid(9)
+grid_size = input("Please enter the game grd size (between 5-9)")
+display_grid(int(grid_size))
