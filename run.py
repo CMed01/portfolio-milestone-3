@@ -52,7 +52,7 @@ def display_grid(square):
         # prints second row including set_mine
         row = str(row_std + 1) + "   |"
         for column in range(square):
-            row = row + str(all_grid_values[(row_std*square)+column]) + "  |"
+            row = row + "  " + str(list(grid_value_dict.values())[(row_std*square)+column]) + "  |"
         print(row)
 
         # prints third row
@@ -141,8 +141,11 @@ def grid_values(value):
 
 def set_grid_values(grid_vector, mine_vector):
     coordinates = {}
-    for vector in grid_vector:
-        coordinates[vector] = 0
+    for vector1 in grid_vector:
+        coordinates[vector1] = 0
+        for vector2 in mine_vector:
+            if vector2 == vector1:
+                coordinates[vector1] = -1
     return coordinates
 
 
