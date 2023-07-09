@@ -61,5 +61,41 @@ def display_grid(width):
 
     print()
 
-grid_size = input("Please enter the game grd size (between 5-9):  ")
-display_grid(int(grid_size))
+def get_grid_size():
+    """
+    Gets grid size data from user input
+    """
+    while True:
+        grid_value = input("Please enter the game grd size (between 5-9):  ")
+
+        if validate_grid_size(grid_value):
+            print("Data is valid")
+            break
+    
+    return grid_value
+
+
+def validate_grid_size(value):
+    """
+    Checks the user input and validates data
+    Ensures number is a integer and between the value of 5 and 9
+    """
+    try:
+        value = int(value)
+        if value < 5 or value > 9:
+            raise ValueError("Please enter a number between 5 and 9")
+
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again.\n")
+        return False
+
+    return True
+
+def main():
+    """
+    Main function of the game runs 
+    """
+    grid_size = get_grid_size()
+    display_grid(int(grid_size))
+
+main()
