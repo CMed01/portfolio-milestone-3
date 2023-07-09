@@ -52,7 +52,8 @@ def display_grid(square):
         # prints second row including set_mine
         row = str(row_std + 1) + "   |"
         for column in range(square):
-            row = row + "  " + str(list(grid_value_dict.values())[(row_std*square)+column]) + "  |"
+            row = row + "  " + str(grid_value[row_std][column]) + "  |"
+            # row = row + "  " + str(list(grid_value_dict.values())[(row_std*square)+column]) + "  |"
         print(row)
 
         # prints third row
@@ -103,50 +104,38 @@ def validate_grid_size(value):
 #     total_mine = grid_size - 1
 #     return total_mines
 
-
-def generate_random_mines():
-    """
-    Generate random mine positions based on grid_size
-    """
-    mine_position_values = []
-    counter = 0
-
-    while counter < grid_size - 1:
-
-        random_num1 = random.randint(1, grid_size)
-        random_num2 = random.randint(1, grid_size)
-
-        mine_position_values.append((random_num1, random_num2))
-        counter += 1
-
-    return mine_position_values
-
-
 def grid_values(value):
     """
     Add numerical values to grid
-    -1 = mine
-    positive value number = number of mines present in the surrounding grid squares
-    0 or blank = no mines in the surrounding grid squares
     """
-    all_grid_values = []
-    for num1 in range(value):
-        num1 += 1
-        for num2 in range(value):
-            num2 += 1
-            all_grid_values.append((num1, num2))
-            
-    return all_grid_values
+    grid_values = [[0 for x in range(value)] for y in range(value)]
+
+    return grid_values
 
 
-def set_grid_values(grid_vector, mine_vector):
-    coordinates = {}
-    for vector1 in grid_vector:
-        coordinates[vector1] = 0
-        for vector2 in mine_vector:
-            if vector2 == vector1:
-                coordinates[vector1] = -1
-    return coordinates
+def generate_random_mines(value):
+    """
+    Generate random mine positions based on grid_size
+    """
+    counter = 0
+
+    while counter < grid_size:
+
+        num1 = random.randint(1, grid_size*grid_size-1)
+        num2 = random.randint(1, grid_size*grid_size-1)
+        
+        x = num1 // grid_size
+        y = num2 % grid_size
+
+        if value[x][y] != -1:
+            counter += 1
+            value[x][y] = -1
+# mine_values.append((random_num1, random_num2))
+    return grid_value
+
+
+def update_grid_numbers(value):
+    print(value)
 
 
 def main():
@@ -159,9 +148,7 @@ def main():
 
 
 grid_size = get_grid_size()
-all_grid_values = grid_values(grid_size)
-mine_values = generate_random_mines()
-grid_value_dict = set_grid_values(all_grid_values, mine_values)
-main()
+grid_value = grid_values(grid_size)
+mine_values = generate_random_mines(grid_value)
 
-print(grid_value_dict)
+main()
