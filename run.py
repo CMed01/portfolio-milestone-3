@@ -34,8 +34,9 @@ def display_grid(square):
     print(row)
 
     # Prints the remainder of the game grid
+    # row-std = standard
     for row_std in range(square):
-        # Prints the bottom header border
+        # Prints the bottom border for the header
         row = "    "
         if row_std == 0:
             for column in range(square):
@@ -48,10 +49,10 @@ def display_grid(square):
             row = row + "     |"
         print(row)
 
-        # prints second row
+        # prints second row including set_mine
         row = str(row_std + 1) + "   |"
         for column in range(square):
-            row = row + "  M" + "  |"
+            row = row + str(all_grid_values[(row_std*square)+column]) + "  |"
         print(row)
 
         # prints third row
@@ -61,6 +62,7 @@ def display_grid(square):
         print(row)
 
     print()
+
 
 def get_grid_size():
     """
@@ -101,6 +103,7 @@ def validate_grid_size(value):
 #     total_mine = grid_size - 1
 #     return total_mines
 
+
 def generate_random_mines():
     """
     Generate random mine positions based on grid_size
@@ -118,16 +121,44 @@ def generate_random_mines():
 
     return mine_position_values
 
+
+def grid_values(value):
+    """
+    Add numerical values to grid
+    -1 = mine
+    positive value number = number of mines present in the surrounding grid squares
+    0 or blank = no mines in the surrounding grid squares
+    """
+    all_grid_values = []
+    for num1 in range(value):
+        num1 += 1
+        for num2 in range(value):
+            num2 += 1
+            all_grid_values.append((num1, num2))
+            
+    return all_grid_values
+
+
+def set_grid_values(grid_vector, mine_vector):
+    coordinates = {}
+    for vector in grid_vector:
+        coordinates[vector] = 0
+    return coordinates
+
+
 def main():
     """
     Main function of the game runs 
     """
     print("Welcome to ChrisSweeper:MineHunter")
     display_grid(int(grid_size))
+    
 
 
 grid_size = get_grid_size()
+all_grid_values = grid_values(grid_size)
+mine_values = generate_random_mines()
+grid_value_dict = set_grid_values(all_grid_values, mine_values)
 main()
 
-print(generate_random_mines())
-
+print(grid_value_dict)
