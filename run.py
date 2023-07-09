@@ -2,6 +2,8 @@
 # You can delete these comments, but do not change the name of this file
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
+import random
+
 class Board:
     def __init__(self, square):
         self.square = square
@@ -70,6 +72,8 @@ def get_grid_size():
         if validate_grid_size(grid_value):
             print("Data is valid")
             break
+
+    grid_value = int(grid_value)
     
     return grid_value
 
@@ -90,12 +94,40 @@ def validate_grid_size(value):
 
     return True
 
+# def total_mines():
+#     """
+#     Return total mines depending on grid size selected.
+#     """
+#     total_mine = grid_size - 1
+#     return total_mines
+
+def generate_random_mines():
+    """
+    Generate random mine positions based on grid_size
+    """
+    mine_position_values = []
+    counter = 0
+
+    while counter < grid_size - 1:
+
+        random_num1 = random.randint(1, grid_size)
+        random_num2 = random.randint(1, grid_size)
+
+        mine_position_values.append((random_num1, random_num2))
+        counter += 1
+
+    return mine_position_values
+
 def main():
     """
     Main function of the game runs 
     """
     print("Welcome to ChrisSweeper:MineHunter")
-    grid_size = get_grid_size()
     display_grid(int(grid_size))
 
+
+grid_size = get_grid_size()
 main()
+
+print(generate_random_mines())
+
