@@ -130,12 +130,43 @@ def generate_random_mines(value):
         if value[x][y] != -1:
             counter += 1
             value[x][y] = -1
-# mine_values.append((random_num1, random_num2))
-    return grid_value
+
+    return value
 
 
 def update_grid_numbers(value):
-    print(value)
+    for x in range(grid_size):
+        for y in range(grid_size):
+
+            if value[x][y] == -1:
+                continue
+            
+            # Check top grid space
+            if x >= 1 and value[x-1][y] == -1:
+                value[x][y] += 1
+            # Check top-right grid space
+            if x >= 1 and y < grid_size-1 and value[x-1][y+1] == -1:
+                value[x][y] += 1
+            # Check right grid space
+            if y < grid_size - 1 and value[x][y+1] == -1:
+                value[x][y] += 1
+            # Check bottom-right grid space
+            if x < grid_size - 1  and y < grid_size-1 and value[x+1][y+1] == -1:
+                value[x][y] += 1
+            # Check bottom grid space
+            if x < grid_size - 1 and value[x+1][y] == -1:
+                value[x][y] += 1
+            # Check bottom-left grid space
+            if x < grid_size - 1  and y >= 1 and value[x+1][y-1] == -1:
+                value[x][y] += 1
+            # Check left grid space
+            if y >= 1 and value[x][y-1] == -1:
+                value[x][y] += 1
+            # Check top-left grid space
+            if x >= 1 and y >= 1 and value[x-1][y-1] == -1:
+                value[x][y] += 1
+            
+        return grid_value
 
 
 def main():
@@ -149,6 +180,7 @@ def main():
 
 grid_size = get_grid_size()
 grid_value = grid_values(grid_size)
-mine_values = generate_random_mines(grid_value)
+mine_values_added = generate_random_mines(grid_value)
+update_grid_numbers(mine_values_added)
 
 main()
