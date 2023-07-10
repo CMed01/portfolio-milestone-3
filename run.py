@@ -52,8 +52,7 @@ def display_grid(square):
         # prints second row including set_mine
         row = str(row_std + 1) + "   |"
         for column in range(square):
-            row = row + "  " + str(grid_value[row_std][column]) + "  |"
-            # row = row + "  " + str(list(grid_value_dict.values())[(row_std*square)+column]) + "  |"
+            row = row + "  " + str(display_values[row_std][column]) + "  |"
         print(row)
 
         # prints third row
@@ -70,15 +69,15 @@ def get_grid_size():
     Gets grid size data from user input
     """
     while True:
-        grid_value = input("Please enter the game grd size (between 5-9):  ")
+        grid_size = input("Please enter the game grd size (between 5-9):  ")
 
-        if validate_grid_size(grid_value):
+        if validate_grid_size(grid_size):
             print("Data is valid")
             break
 
-    grid_value = int(grid_value)
+    grid_size = int(grid_size)
     
-    return grid_value
+    return grid_size
 
 
 def validate_grid_size(value):
@@ -96,13 +95,7 @@ def validate_grid_size(value):
         return False
 
     return True
-
-# def total_mines():
-#     """
-#     Return total mines depending on grid size selected.
-#     """
-#     total_mine = grid_size - 1
-#     return total_mines
+ 
 
 def grid_values(value):
     """
@@ -121,8 +114,8 @@ def generate_random_mines(value):
 
     while counter < grid_size:
 
-        num1 = random.randint(1, grid_size*grid_size-1)
-        num2 = random.randint(1, grid_size*grid_size-1)
+        num1 = random.randint(1, grid_size**2-1)
+        num2 = random.randint(1, grid_size**2-1)
         
         x = num1 // grid_size
         y = num2 % grid_size
@@ -143,31 +136,39 @@ def update_grid_numbers(value):
             
             # Check top grid space
             if x >= 1 and value[x-1][y] == -1:
-                value[x][y] += 1
+                value[x][y] = value[x][y] + 1
             # Check top-right grid space
             if x >= 1 and y < grid_size-1 and value[x-1][y+1] == -1:
-                value[x][y] += 1
+                value[x][y] = value[x][y] + 1
             # Check right grid space
             if y < grid_size - 1 and value[x][y+1] == -1:
-                value[x][y] += 1
+                value[x][y] = value[x][y] + 1
             # Check bottom-right grid space
             if x < grid_size - 1  and y < grid_size-1 and value[x+1][y+1] == -1:
-                value[x][y] += 1
+                value[x][y] = value[x][y] + 1
             # Check bottom grid space
             if x < grid_size - 1 and value[x+1][y] == -1:
-                value[x][y] += 1
+                value[x][y] = value[x][y] + 1
             # Check bottom-left grid space
             if x < grid_size - 1  and y >= 1 and value[x+1][y-1] == -1:
-                value[x][y] += 1
+                value[x][y] = value[x][y] + 1
             # Check left grid space
             if y >= 1 and value[x][y-1] == -1:
-                value[x][y] += 1
+                value[x][y] = value[x][y] + 1
             # Check top-left grid space
             if x >= 1 and y >= 1 and value[x-1][y-1] == -1:
-                value[x][y] += 1
-            
-        return grid_value
+                value[x][y] = value[x][y] + 1
+        
+    return grid_values
 
+def display_values(value):
+    """
+    Change list numeration to blank for display to console.
+    """
+
+    display_values = [[" " for x in range(value)] for y in range(value)]
+
+    return display_values
 
 def main():
     """
@@ -175,12 +176,22 @@ def main():
     """
     print("Welcome to ChrisSweeper:MineHunter")
     display_grid(int(grid_size))
+
+  
     
 
 
 grid_size = get_grid_size()
-grid_value = grid_values(grid_size)
-mine_values_added = generate_random_mines(grid_value)
-update_grid_numbers(mine_values_added)
+grid_values = grid_values(grid_size)
+grid_values = generate_random_mines(grid_values)
+grid_values = update_grid_numbers(grid_values)
+
+display_values = display_values(grid_size)
 
 main()
+
+game_over = False
+
+while game_over is not True:
+    user_input = []
+    user_mine_guess = input("Enter the coordinates here:  ").split()
