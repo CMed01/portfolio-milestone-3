@@ -202,7 +202,7 @@ def main():
 
     game_over = False
     life_counter = 3
-    mines_found = 0
+    mines_left = grid_size
     # While loop for game function
     while game_over is not True:
 
@@ -215,18 +215,23 @@ def main():
             grid_values[x][y] = "M"
             display_grid(grid_size)
             print(f"Number of attempts left: {life_counter}")
-            print("BOOM!!! You have found a mine, good hunting")
-            mines_found = mines_found + 1
-            if mines_found == grid_size:
+            if mines_left == mines_left + grid_size:
                 print("BOOM, BOOM, BOOM, you have found all the mines, Well Done!")
-                    
-          
+                game_over = True
+            else:
+                print("BOOM!!! You have found a mine, good hunting")
+                mines_left = mines_left - 1
+                print(f"Mines left: {(mines_left)}")
+
+            
+
         else:
             print("Close, keep hunting for all those mines")
             life_counter = life_counter - 1
             print(f"Number of attempts left: {life_counter}")
             if life_counter == 0:
                 print("You have used all your attempts, try again to find all the mines")
+                game_over = True
 
 
 grid_size = get_grid_size()
