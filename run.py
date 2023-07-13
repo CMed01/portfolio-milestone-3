@@ -52,7 +52,7 @@ def display_grid(square):
         # prints second row including set_mine
         row = str(row_std + 1) + "   |"
         for column in range(square):
-            row = row + "  " + str(grid_values[row_std][column]) + "  |"
+            row = row + "  " + str(display_values[row_std][column]) + "  |"
         print(row)
 
         # prints third row
@@ -203,6 +203,7 @@ def main():
     game_over = False
     life_counter = 3
     mines_left = grid_size
+    1
     # While loop for game function
     while game_over is not True:
 
@@ -212,7 +213,7 @@ def main():
         y = input[1] - 1
 
         if grid_values[x][y] == -1:
-            grid_values[x][y] = "M"
+            display_values[x][y] = "M"
             display_grid(grid_size)
             print(f"Number of attempts left: {life_counter}")
             if mines_left == mines_left + grid_size:
@@ -221,11 +222,11 @@ def main():
             else:
                 print("BOOM!!! You have found a mine, good hunting")
                 mines_left = mines_left - 1
-                print(f"Mines left: {(mines_left)}")
-
-            
+                print(f"Mines left: {(mines_left)}")   
 
         else:
+            display_values[x][y] = grid_values[x][y]
+            display_grid(grid_size)
             print("Close, keep hunting for all those mines")
             life_counter = life_counter - 1
             print(f"Number of attempts left: {life_counter}")
