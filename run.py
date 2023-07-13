@@ -3,13 +3,14 @@
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
 import random
+import os
 
 class Board:
     def __init__(self, square):
         self.square = square
     
 
-def display_grid(square):
+def display_grid(square, grid):
     """
     Builds game border and displays to terminal
     Header row contains numbers using the width parameter
@@ -52,7 +53,7 @@ def display_grid(square):
         # prints second row including set_mine
         row = str(row_std + 1) + "   |"
         for column in range(square):
-            row = row + "  " + str(display_values[row_std][column]) + "  |"
+            row = row + "  " + str(grid[row_std][column]) + "  |"
         print(row)
 
         # prints third row
@@ -128,7 +129,6 @@ def generate_random_mines(value):
 
     return value
 
-
 def update_grid_numbers(value):
     for x in range(grid_size):
         for y in range(grid_size):
@@ -172,83 +172,112 @@ def display_values(value):
 
     return display_values
 
-def user_input():
-    # Takes user input for coordinates
-    user_mine_guess = input("Enter the coordinates here:  ").split()
+def reveal_answers(grid_values):
+    for x in range(grid_size):
+        for y in range(grid_size):
+            if grid_values[x][y] == -1:
+                grid_values[x][y] = "M"
+    return 
 
-    if len(user_mine_guess) != 2:
-        # checks validity of user input and returns error message if the input is not 2 numbers seprated with a comma
-        # That is between 1 and the grid_size
-        print(f"Please try again and enter two single numbers between 1 and {grid_size}")
-                        
-    else:
-        try:
-            user_input = list(map(int,user_mine_guess))
-            print(user_input)
 
-            if user_input[0] < 1 or user_input[0] > grid_size or user_input[1] < 1 or user_input[1] > grid_size :
-                print(f"Please try again and enter two single numbers between 1 and {grid_size}")
-                
-            else:
-                print("correct entry")
-                    
-        except ValueError:
-            print(f"Please try again and enter two single numbers between 1 and {grid_size}")
-            
+def clear():
+    """
+    Clears the terminal
+    """
+    os.system("clear")
 
-    return user_input
 
 def main():
 
     game_over = False
-    life_counter = 3
+    life_counter = grid_size * 2
     mines_left = grid_size
-    1
+
     # While loop for game function
     while game_over is not True:
 
-        input = user_input()
+        user_mine_guess = input("Enter the coordinates here:  ").split()
 
-        x = input[0] - 1
-        y = input[1] - 1
-
-        if grid_values[x][y] == -1:
-            display_values[x][y] = "M"
-            display_grid(grid_size)
-            print(f"Number of attempts left: {life_counter}")
-            if mines_left == mines_left + grid_size:
-                print("BOOM, BOOM, BOOM, you have found all the mines, Well Done!")
-                game_over = True
-            else:
-                print("BOOM!!! You have found a mine, good hunting")
-                mines_left = mines_left - 1
-                print(f"Mines left: {(mines_left)}")   
-
+        if len(user_mine_guess) != 2:
+            # checks validity of user input and returns error message if the input is not 2 numbers seprated with a comma
+            # That is between 1 and the grid_size
+            print(f"Please try again and enter two single numbers between 1 and {grid_size}")
+                            
         else:
-            display_values[x][y] = grid_values[x][y]
-            display_grid(grid_size)
-            print("Close, keep hunting for all those mines")
-            life_counter = life_counter - 1
-            print(f"Number of attempts left: {life_counter}")
-            if life_counter == 0:
-                print("You have used all your attempts, try again to find all the mines")
-                game_over = True
+            try:
+                user_input = list(map(int, user_mine_guess))
+                print(user_input)
+                
+                if user_input[0] < 1 or user_input[0] > grid_size or user_input[1] < 1 or user_input[1] > grid_size :
+                    print(f"Please try again and enter two single numbers between 1 and {grid_size}")
+                    continue
+                    
+                else:
+                    x = user_input[0] - 1
+                    y = user_input[1] - 1
+
+                    if grid_values[x][y] == -1:
+                        clear()
+                        mines_left = mines_left - 1
+                        display_values[x][y] = "M"
+                        display_grid(grid_size, display_values)
+                        print("BOOM!!! You have found a mine, good hunting")
+                        print(f"Number of attempts left: {life_counter}")
+                        print(f"Mines left: {(mines_left)}")  
+                        if mines_left == 0:
+                            clear()
+                            display_grid(grid_size, answer_values)
+                            print(f"BOOM, BOOM, BOOM, you have found all the mines with {life_counter} lives remaining")
+                            print("Well Done! Give the Mine Hunt another go")
+                            game_over = True
+                        
+
+                    else:
+                        clear()
+                        life_counter = life_counter - 1
+                        display_values[x][y] = grid_values[x][y]
+                        display_grid(grid_size, display_values)
+                        print("Close, keep hunting for all those mines")
+                        print(f"Number of attempts left: {life_counter}")
+                        print(f"Mines left: {(mines_left)}") 
+                        if life_counter == 0:
+                            display_grid(grid_size, answer_values)
+                            print("You have used all your attempts, try again to find all the mines")
+                            game_over = True                          
+                      
+                      
+                   
+                        # clear()
+                        # life_counter = life_counter - 1
+                        # if life_counter == 0:
+                        #     display_grid(grid_size, answer_values)
+                        #     print("You have used all your attempts, try again to find all the mines")
+                        #     game_over = True
+                        
+                        # else:
+                        #     display_values[x][y] = grid_values[x][y]
+                        #     display_grid(grid_size, display_values)
+                        #     print("Close, keep hunting for all those mines")
+                        #     print(f"Number of attempts left: {life_counter}")
+                        #     print(f"Mines left: {(mines_left)}")  
+                        
+                    
+            except ValueError:
+                print(f"Please try again and enter two single numbers between 1 and {grid_size}")
+                continue
 
 
 grid_size = get_grid_size()
 grid_values = grid_values(grid_size)
 grid_values = generate_random_mines(grid_values)
 grid_values = update_grid_numbers(grid_values)
-
 display_values = display_values(grid_size)
-print(grid_values)
 
-
-
+# answer_values = reveal_answers(grid_values)
 
 
 print("Welcome to ChrisSweeper:MineHunter")
-display_grid(grid_size)
+display_grid(grid_size, display_values)
 
 if __name__ == "__main__":
     try:
