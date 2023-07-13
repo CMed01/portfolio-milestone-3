@@ -52,7 +52,7 @@ def display_grid(square):
         # prints second row including set_mine
         row = str(row_std + 1) + "   |"
         for column in range(square):
-            row = row + "  " + str(display_values[row_std][column]) + "  |"
+            row = row + "  " + str(grid_values[row_std][column]) + "  |"
         print(row)
 
         # prints third row
@@ -99,7 +99,7 @@ def validate_grid_size(value):
 
 def grid_values(value):
     """
-    Add numerical values to grid
+    GENERAT EMPTY GRID 
     """
     grid_values = [[0 for x in range(value)] for y in range(value)]
 
@@ -109,6 +109,8 @@ def grid_values(value):
 def generate_random_mines(value):
     """
     Generate random mine positions based on grid_size
+
+    ADD MORE DETAIL TO THIS FUNCTION
     """
     counter = 0
 
@@ -177,8 +179,36 @@ def main():
     print("Welcome to ChrisSweeper:MineHunter")
     display_grid(int(grid_size))
 
-  
-    
+    # While loop for game function
+    while game_over is not True:
+       
+    #    Takes user input for coordinates
+        user_mine_guess = input("Enter the coordinates here:  ").split()
+
+        if len(user_mine_guess) == 2:
+            # checks validity of user input and returns error message if the input is not 2 numbers seprated with a comma
+            # That is between 1 and the grid_size
+            try:
+                user_input = list(map(int,user_mine_guess))
+                print(user_input)
+
+                if user_input[0] < 1 or user_input[0] > grid_size or user_input[1] < 1 or user_input[1] > grid_size :
+                    print(f"Please try again and enter two single numbers between 1 and {grid_size}")
+                    continue
+                else:
+                    print("correct entry")
+                    continue
+                
+            except ValueError:
+                print(f"Please try again and enter two single numbers between 1 and {grid_size}")
+                continue
+            
+        else:
+            print(f"Please try again and enter two single numbers between 1 and {grid_size}")
+            continue
+
+        
+            
 
 
 grid_size = get_grid_size()
@@ -187,11 +217,11 @@ grid_values = generate_random_mines(grid_values)
 grid_values = update_grid_numbers(grid_values)
 
 display_values = display_values(grid_size)
-
-main()
+print(grid_values)
 
 game_over = False
 
-while game_over is not True:
-    user_input = []
-    user_mine_guess = input("Enter the coordinates here:  ").split()
+main()
+
+
+
