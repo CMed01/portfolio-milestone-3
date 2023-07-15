@@ -252,13 +252,11 @@ def title():
     Prints the title of the game and instructions to the terminal
     """
     clear()
-    print("ChrisSweeper: Mine Hunter\n")
     print("Instructions:")
     print("1. Find all the mines without using all lives")
     print("2. Enter two numbers separated by a space to reveal square")
     print("   first number is the x axis and second is th y axis")
     print("3. M = mine, number = number of surrounding mines")
-    print("-------------------------------------------")
 
     # Added extra blank print statement so that the above remains available
     # in the terminal on the deployed website.
@@ -349,7 +347,6 @@ def main():
                         mines_left = mines_left - 1
                         display_values[x][y] = "M"
                         clear()
-                        clear()
                         display_grid(grid_size, display_values)
                         print("BOOM!!! You have found a mine, good hunting")
                         print(f"Number of attempts left: {life_counter}")
@@ -393,7 +390,7 @@ def main():
 
 
 print("Welcome to ChrisSweeper: MineHunter")
-print("Select your grid size and difficulty\n")
+print("Select your grid size and difficulty")
 
 # Stores the grid_size after user inputs value
 grid_size = get_grid_size()
