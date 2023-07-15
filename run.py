@@ -330,7 +330,7 @@ def main():
                     if mine_grid[x][y] == -1:
                         mines_left = mines_left - 1
                         display_values[x][y] = "M"
-                        title()
+                        clear()
                         display_grid(grid_size, display_values)
                         print("BOOM!!! You have found a mine, good hunting")
                         print(f"Number of attempts left: {life_counter}")
@@ -353,7 +353,7 @@ def main():
                     else:
                         life_counter = life_counter - 1
                         display_values[x][y] = mine_grid[x][y]
-                        title()
+                        clear()
                         display_grid(grid_size, display_values)
                         print("Close, keep hunting for all those mines")
                         print(f"Number of attempts left: {life_counter}")
