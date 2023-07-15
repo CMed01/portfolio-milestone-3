@@ -1,8 +1,8 @@
 """
 ChriSweeper: Mine Hunter game
-------------------
-Aim of the game is to identify all the mines
-within the number of attempts
+
+Following code creates a game where the user needs to find all
+available mines on a randomly generated grid
 """
 
 import random
@@ -11,11 +11,15 @@ import os
 
 def display_grid(square, mines):
     """
-    Builds game border and when called displays to terminal
-    Header row contains numbers using the square parameter
+    Displays game grid to terminal and inserts values
+
+    Function takes two parameters
+    square =which is determined by the user - value between 5 and 9
+    mines = display value depending on stage of game
+    Grid is outlined by numbers identifying the row and column
     Remaining game grid consists of three rows that are repeated
-    Using for loop in a for loop
-    on both row and columne as per the square parameter:
+    Using for loop in a for loop on both row and columne
+    as per the square parameter:
     1st row =    |     |
     2nd row =  1 |  ?  |
     3rd row =    |_____|
@@ -63,10 +67,11 @@ def display_grid(square, mines):
 
 def get_grid_size():
     """
-    User can input a value bewteen 4 and 9
+    Stores the a value of the grid following user input
+
+    User inputs a value bewteen 5 and 9
     Data input is validated using a seperate function
-    Once number is valid, this value is passed to several functions
-    to display grid and generate mines
+    Once validated valid, value is stored in a variable grid
     """
     while True:
         grid_input = input("Please enter the game grd size (between 5-9):\n")
@@ -80,11 +85,11 @@ def get_grid_size():
 
 def validate_grid_size(value):
     """
-    Input value from user is checked to ensure it is
-    an integer and is between the values of 5 and 9
-    If value does not meet criteria then a value error is displayed
-    promting user to input the correct value
-    Correct input is passed badk to get_grid_size
+    Validates the number inputted for grid size
+
+    Input is valid if an integer and between 5 and 9
+    If value is not valid, a value error is displayed and user can retry
+    Valid input returns True
     """
     try:
         value = int(value)
@@ -100,9 +105,11 @@ def validate_grid_size(value):
 
 def generate_grid_values(value):
     """
-    Function passes grid_size and generate a nested list
-    The number of nested list will depend on the grid_size
-    I.e. if grid_size = 5
+    Generates a nested list, with values of 0
+
+    Function passes grid_size and generates a nested list
+    The number of nested liss and the values inside each list
+    will depend on the grid_size. I.e. if grid_size = 5
     then list will be 5 lists of 5 numbers each with value of 0
     [[0,0,0,0,0],
     [0,0,0,0,0],
@@ -117,10 +124,12 @@ def generate_grid_values(value):
 
 def generate_random_mines(grid):
     """
+    Updates selected values of nested list with values of -1
+
     Function passes grid_values (which is a nested list)
-    Grid_size value is used to generate 2 random numbers
-    These two numbers are then used as index numbers to grid_values
-    and will amend the value of nested list.
+    Two random numbers are generted and used as index numbers
+    to update the value.index of a nested list.
+    Number of iterations is determined by the grid_size
     I.e. if number generated are 2 1, then list 1 and value 0 will
     be ameneded as below to -1
     [[0,0,0,0,0],
@@ -147,16 +156,14 @@ def generate_random_mines(grid):
 
 def update_grid_numbers(value):
     """
-    This function will pass the grid_values and using
-    the range from grid_size as index numbers.
-    Each index of the nested list will be interrogated
-    All surrounding values suing vextor method will be checked
-    Any surrounding grid with a value of -1 will add to the count.
-    Once the loop has completed the total value will be passed to
-    the grid_value index.
-    The aim of this function will update the nested list so that
-    when displayed to the user, it will inform the user of the
-    number of mines surrouding the cell revealed.
+    Updates nested list with a value showing how many mines are surrounding
+
+    This function will pass the grid_values and using the range from
+    grid_size as index numbers.
+    Each index of the nested list will interrogate all surrounding values.
+    Any surrounding values with a value of -1 will add to the count.
+    Once the loop has completed the total value will be passed to the
+    grid_value index.
     I.e. if 4 then there are 4 mines in the surroind 8 cells.
     """
     for x in range(grid_size):
@@ -195,11 +202,13 @@ def update_grid_numbers(value):
 
 def generate_display_values(value):
     """
-    Simialr to generate_ grid_values function
-    passes grid_size and generate a nested list
-    The number of nested list will depend on the grid_size
-    I.e. if grid_size = 5
-    then list will be 5 lists of 5 blank string values each with value of " "
+    Generates a nested list, with values of " "
+
+    Function passes grid_size and generates a nested list.
+    The number of nested lists and the values inside each list will
+    depend on the grid_size
+    I.e. if grid_size = 5 then list will be 5 lists of 5 strings each
+    with an empty value.
     [[" "," "," "," "," "],
     [" "," "," "," "," "],
     [" "," "," "," "," "],
@@ -215,9 +224,10 @@ def generate_display_values(value):
 
 def reveal_answers(grid):
     """
-    This function passes the nested list grid_values
-    This function will iterate through this nested list
-    using the grid_size value to generate index numbers
+    Generates a nested list, with values of M and numbers
+
+    This function passes the nested list grid_values and iterates through it
+    using the grid_size value to generate index numbers.
     The grid_values list is updated to change -1 values to "M"
     This new nested list will then be used to display
     grid values to the user when the game_over variable is false
@@ -257,19 +267,20 @@ def title():
 
 def main():
     """
-    This function contains the main game logic and is called when the terminal
-    is loaded after the user inputs the intended grid_size.
+    Main function containing game logic
+
+    Called to the terminal when loaded after grid_size input from user.
     The game loop runs when the game_over variable is False.
     The number of attempts left and the number of mines left to find
-    are calculated using the grid_size
+    are calculated using the grid_size.
     Both these values are then displayed to the terminal.
-    The diaplay_grid function is called and displayed a grid with blank cells
+    The diaplay_grid function is called and displays a grid with blank cells.
     A user input is displayed with clear instructions for valid input
     The input variables are checked and once validated the numbers are
-    used as index values to iterate through the grid_values
-    and then the display_values are printed to the terminal.
-    Each attempts that successfully identifies a mine deducts one
-    from the mines_left only.
+    used as index values to iterate through the grid_values and then the
+    display_values are printed to the terminal.
+    Each attempts that successfully identifies a mine deducts one from the
+    mines_left only.
     Each attempt that is unsuccessful in identifying a mine deducts one from
     the life counter only.
     The terminal is then cleared and an updated grid is displayed.
