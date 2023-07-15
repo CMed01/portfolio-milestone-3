@@ -14,14 +14,14 @@ def display_grid(square, mines):
     mines = display value depending on stage of game
     Grid is outlined by numbers identifying the row and column
     Remaining game grid consists of three rows that are repeated
-    Using for loop in a for loop on both row and columne
+    Using for loop in a for loop on both row and column
     as per the square parameter:
     1st row =    |     |
     2nd row =  1 |  ?  |
     3rd row =    |_____|
     ? = mine_value, this will either be blank, number or M
     """
-    # Prints header row from the width paraeter
+    # Prints header row from the width parameter
     # Starting at number 1
     row = "   "
     for row_header in range(square):
@@ -65,8 +65,8 @@ def get_grid_size():
     """
     Stores the a value of the grid following user input
 
-    User inputs a value bewteen 5 and 9
-    Data input is validated using a seperate function
+    User inputs a value between 5 and 9
+    Data input is validated using a separate function
     Once validated valid, value is stored in a variable grid
     """
     while True:
@@ -123,11 +123,11 @@ def generate_random_mines(grid):
     Updates selected values of nested list with values of -1
 
     Function passes grid_values (which is a nested list)
-    Two random numbers are generted and used as index numbers
+    Two random numbers are generated and used as index numbers
     to update the value.index of a nested list.
     Number of iterations is determined by the grid_size
     I.e. if number generated are 2 1, then list 1 and value 0 will
-    be ameneded as below to -1
+    be amended as below to -1
     [[0,0,0,0,0],
     [-1,0,0,0,0],
     [0,0,0,0,0],
@@ -160,7 +160,7 @@ def update_grid_numbers(value):
     Any surrounding values with a value of -1 will add to the count.
     Once the loop has completed the total value will be passed to the
     grid_value index.
-    I.e. if 4 then there are 4 mines in the surroind 8 cells.
+    I.e. if 4 then there are 4 mines in the surronding 8 cells.
     """
     for x in range(grid_size):
         for y in range(grid_size):
@@ -249,19 +249,19 @@ def clear():
 
 def title():
     """
-    Prints the title of the game and intructions to the terminal
+    Prints the title of the game and instructions to the terminal
     """
     clear()
     print("ChrisSweeper: Mine Hunter\n")
     print("Instructions:")
     print("1. Find all the mines without using all lives")
-    print("2. Enter two numbers seperated by a space to reveal square")
+    print("2. Enter two numbers separated by a space to reveal square")
     print("   first number is the x axis and second is th y axis")
     print("3. M = mine, number = number of surrounding mines")
     print("-------------------------------------------")
 
     # Added extra blank print statement so that the above remains available
-    # in terminal on deployed website.
+    # in the terminal on the deployed website.
     # os.system("clear") does not clear the full terminal in Heroku.
     print("    ")
 
@@ -305,14 +305,16 @@ def main():
         user_mine_guess = input("Enter the coordinates here:\n").split()
 
         # checks validity of user input and returns error message
-        # Checks is inut lenght is not 2
+        # Checks is input length is not 2
         if len(user_mine_guess) != 2:
+            clear()
+            display_grid(grid_size, display_values)
             print("Try again")
             print(f"Enter two numbers between 1 and {grid_size}")
         else:
-            # Checks is values are intergers
+            # Checks is values are integers
             # if not then returns a Value Error
-            # If interger then generate 1 list of 2 numbers
+            # If integer then generate 1 list of 2 numbers
             try:
                 user_input = list(map(int, user_mine_guess))
 
@@ -320,6 +322,8 @@ def main():
                 # > grid_size then returns an error message
                 if (user_input[0] < 1 or user_input[0] > grid_size or
                         user_input[1] < 1 or user_input[1] > grid_size):
+                    clear()
+                    display_grid(grid_size, display_values)    
                     print("Try again")
                     print(f"Enter two numbers between 1 and {grid_size}")
                     continue
@@ -408,7 +412,7 @@ mine_grid = update_grid_numbers(grid_and_mine_values)
 # Updates grid_values to be displayed when game over or won
 answer_grid = reveal_answers(mine_grid)
 
-# Main game function called when terminal loaded and grid_size input recieved
+# Main game function called when terminal loaded and grid_size input receeved
 if __name__ == "__main__":
     try:
         main()

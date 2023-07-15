@@ -1,36 +1,3 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
-
-Welcome Christopher Meddings,
-
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
-
-## Reminders
-
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
-
-## Creating the Heroku app
-
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
------
-Happy coding!
-
-
 # __Portfolio Project 3 - Python__
 ## __ChrisSweeper: Mine Hunter__
 ![ChrisSweeper: Mine Hunter](./readme-assets/game-logo.png)
@@ -62,19 +29,19 @@ Reasons for the site:
 #### __User Stories__
 * As a user I want to be able to:
     * Easily understand the main purpose of the website.
-    * Easily navigate the website to find and intereact with the content.
+    * Easily navigate the website to find and interact with the content.
     * Easily understand the instructions of the game.
     * Specify the size of the mine grid before starting the game, adjusting the difficulty.
     * Generate a game grid with randomly generated mines equal to the width of the grid. The values of each grid square will initially be hidden from view
     * View the number of mines left to detect and the number of attempts remaining to locate all the mines
-    * Input co-ordinates to reveal grid squares and gain knowledge of the number of mines in the surrounding grid squares.
+    * Input coordinates to reveal grid squares and gain knowledge of the number of mines in the surrounding grid squares.
     * Gain information of the number of mines surrounding
     * View the complete grid layout and location of mines and remaining square values when either all mines have been found or attempts have run out.
 
 * As a developer I want:
-    * The user to be able to change the level of difficulty by allowing them functionailty to determine the size of the grid.
-    * The user to have limited number of attempts to find all mines, so that the game presents a challenging and engaging experience.
-    * The user to be able to track their progress, with information detailing the number of mines and lives remaining as well an updated mine grid.
+    * The user to be able to change the level of difficulty by allowing them functionality to determine the size of the grid.
+    * The user to have a limited number of attempts to find all mines, so that the game presents a challenging and engaging experience.
+    * The user to be able to track their progress, with information detailing the number of mines and lives remaining as well as an updated mine grid.
 
 ### __Scope__
 Functionally the site must be:
@@ -85,12 +52,12 @@ Functionally the site must be:
 
 Content should include the following:
 * Provide the user with the rules of the game.
-* Provide interactive functinaility to play the game.
+* Provide interactive functinality to play the game.
 
 ### __Structure__
-Based on the content required in the scope of this projct, this website will consist of one page. The page will contain a simple structure with an embedded terminal. Within the terminal will be the interactive function of this game.
+Based on the content required in the scope of this project, this website will consist of one page. The page will contain a simple structure with an embedded terminal. Within the terminal will be the interactive function of this game.
 
-### __Skelton (Lucidhart)__
+### __Skelton (Lucidchart)__
 As the template for the front-end website design is pre-set. There are no wireframes included in this readme. [Lucidchart](https://www.lucidchart.com/) was used to create the process map for the game logic.
 
 <details open>
@@ -126,9 +93,9 @@ As the template for the front-end website design is pre-set. There are no wirefr
     <br>
     The number of mines is proportional to the grid size.
     <br>
-    The number of attempts is twice a large as the grid size.
+    The number of attempts is twice as large as the grid size.
     <br>
-    A new input message is displayed requesting the user to enter two numbers seperated by a space in the terminal
+    A new input message is displayed requesting the user to enter two numbers separated by a space in the terminal
     <br>
     A game title and instructions are also printed at the top of the screen.
 
@@ -143,7 +110,7 @@ As the template for the front-end website design is pre-set. There are no wirefr
     <summary>Larger game grid </summary>
     <br>
 
-    ![Lareg game grid](./readme-assets/large-grid-size.png)
+    ![Large game grid](./readme-assets/large-grid-size.png)
     </details>
     <details close>
     <summary>Instructions </summary>
@@ -155,20 +122,20 @@ As the template for the front-end website design is pre-set. There are no wirefr
      
      <br>   
 
-3. __Co-ordinate guess__
+3. __Coordinate guess__
     <br>
-    After the user enters two numbers as per the displayed instructions, the relevent square is revealed.
+    After the user enters two numbers as per the displayed instructions, the relavent square is revealed.
     <br>
     The terminal is cleared.
     <br>
     If a mine is present, a "M" is printed in the grid and the mine counter is reduced by 1
     <br>
-    If a mine is not present, a numerical number is printed in the grid and the attempt counter is reduced by 1. This number represents the number of mines in the adjacent grid spaces, further adding clues to the wherabouts of the remaining mines.
+    If a mine is not present, a numerical number is printed in the grid and the attempt counter is reduced by 1. This number represents the number of mines in the adjacent grid spaces, further adding clues to the whereabouts of the remaining mines.
     <br>
-    The user can conitnue to enter co-ordinates until all the mines are found or all attempts have been used.
+    The user can continue to enter coordinates until all the mines are found or all attempts have been used.
     
     <details close>
-    <summary>Co-ordinate entry </summary>
+    <summary>Coordinate entry </summary>
     <br>
 
     ![user-input](./readme-assets/user-input-one.png)
@@ -183,7 +150,7 @@ As the template for the front-end website design is pre-set. There are no wirefr
     <br>
     If the user does not enter the correct coordinates of two single digit numbers separated by a space then an error message is printed to the terminal. The user is requested to re-enter.
     <br>
-    If the user enters a co-ordinate that has already been entered previously. A message is printed to inform the user of a duplicate guess. The mine or attempt counts are not affected.
+    If the user enters a coordinate that has already been entered previously. A message is printed to inform the user of a duplicate guess. The mine or attempt counts are not affected.
     <details close>
     <summary>Validation - grid size </summary>
     <br>
@@ -193,10 +160,10 @@ As the template for the front-end website design is pre-set. There are no wirefr
     </details>
 
     <details close>
-    <summary>Validation - co-ordinates </summary>
+    <summary>Validation - coordinates </summary>
     <br>
 
-     ![Validation Co-ordinates](./readme-assets/validation-coordinate-input.png) 
+     ![Validation Coordinates](./readme-assets/validation-coordinate-input.png) 
 
     </details>
    
@@ -215,7 +182,7 @@ As the template for the front-end website design is pre-set. There are no wirefr
     <br>
     If the user does not locate all the mines before the attempt counter reaches zero then a game over message is displayed.
     <br>
-    On both occassions the user is prompted to click the "Run Program" to restart the game
+    On both occasions the user is prompted to click the "Run Program" to restart the game
     <details close>
     <summary>Game won</summary>
     <br>
@@ -235,10 +202,10 @@ As the template for the front-end website design is pre-set. There are no wirefr
     <br>
 
 6. __Future additions__
-    * Can add functionailty, that is a cell is revelaed and the contents equal 0. Then all the cells surrounding it that equal 0 will be revealed. The revealing of neighbouring cells will stop when a numerical value greater than 1 is met. This will need thought of how to implement a recursive function and was not acheivable in the time frame for this project.
-    * As like a traditional game, can look to add functionaility to mark cells that the user thinks may be a mine. This can help add to the enjoyment of the game espcially when the grid size increases in size. This will involves added an further level of data to the game logic.
-    * The game terminal is pre-set and in future would look to increase the terminal size so that gird-sizes larger than 9 can be chosen for those users eager for a significant challenge.
-    * At the moment, the user can only modify the grid size. A consideration for future can be that the user also enters the number of attempts they start with, again to increase of decrease difficulty.
+    * Can add functionality, that is a cell is revealed and the contents equal 0. Then all the cells surrounding it that equal 0 will be revealed. The revealing of neighboring cells will stop when a numerical value greater than 1 is met. This will need thought of how to implement a recursive function and was not achievable in the time frame for this project.
+    * As like a traditional minesweeper game, can add functionality to mark cells that the user thinks may be a mine. This can help add to the enjoyment of the game especially when the grid size increases in size. This will involve adding a further level of data to the game logic.
+    * The game terminal is pre-set and in future would look to increase the terminal size so that gird sizes larger than 9 can be chosen for those users eager for a significant challenge.
+    * At the moment, the user can only modify the grid size. A consideration for the future can be that the user also enters the number of attempts they start with, again to increase or decrease difficulty.
 
 ## __Technologies__
 
@@ -249,7 +216,7 @@ As the template for the front-end website design is pre-set. There are no wirefr
 ### __Frameworks, programs and libraries__
 
 * [Lucidchart](https://www.lucidchart.com/) - Used to create a process map for the game logic.
-* [Am I Responsive?](https://ui.dev/amiresponsive) - Used to create an image of website on various screen sizes.
+* [Am I Responsive?](https://ui.dev/amiresponsive) - Used to create an image of the website on various screen sizes.
 * [BrandCrowd](https://www.brandcrowd.com/) - Used to create a logo.
 * [Heroku](https://www.heroku.com/) - Used to deploy the website
 
@@ -270,6 +237,18 @@ As the template for the front-end website design is pre-set. There are no wirefr
 <details open>
 <summary>The below table details the test cases that were used. </summary>
 <br>
+
+| Test Number | Test Label                        | Test Action                                                                               | Expected Outcome                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Test Outcome |
+|-------------|-----------------------------------|-------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|
+| T01         | Initial page load                 | Load page                                                                                 | Page loads with not error message printed to the terminal Welcome message is displayed Input message asking for number between 5 and 9                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Pass         |
+| T02         | User input - grid size            | Enter number input Enter string input                                                     | If number between 5 and 9 entered (i.e. 5, 6, 7, 8, 9): Terminal is cleared and replaced with the game title, instructions and a grid with empty values.  If number not between 5- and 9 entered: An error message is displayed and the user is prompted to enter another input.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Pass         |
+| T03         | Grid Display                      | Enter number between 5-9 when prompted for grid size                                      | The grid displayed will be a square of width and height equal to the user input for grid size. The grid will have numbers bordering the height and width. These will be starting from 1 and including the grid size entered There grid value will be empty Underneath the displayed grid, the number of attempts and mines left is also displayed. These values will be: Attempts = grid size * 2 Mines left = grid size A final message will be printed to the terminal asking for the user to enter coordinates                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Pass         |
+| T04         | User input - Coordinates          | Enter correct numbers Enter incorrect numbers                                             | If the numbers entered are correct and grid value not displayed: The terminal will clear and a new grid will be printed to the terminal. The corresponding grid square value will now be displayed. I.e. 1 2 entered then row 1, column 2 will have the value displayed on the grid The title and instructions will be displayed above the grid. The mine and attempts left will be displayed below the grid User input is prompted again for next co-ordinates If the numbers entered are correct and grid value are displayed: The terminal will clear and a new grid will be printed to the terminal. A message will be printed below the grid to state that that guess has already been made The title and instructions will be displayed above the grid. The mine and attempts left will be displayed below the grid User input is prompted again for next co-ordinates If the numbers entered are incorrect: The terminal will clear and a new grid will be printed to the terminal. An error message is displayed No grid values are added User input is prompted again for next co-ordinates | Pass         |
+| T05         | Counter - mines and attempts left | Enter in correct coordinates                                                              | With each successful entry of correct coordinates. If a mine is identified the mine counter is reduced by one If a mine is not identified the attempt counter is reduced by one  If the user enters a coordinate of a square where the value is already known. Neither counters will be reduced and as per T04, a message stating already guessed will appear.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Pass         |
+| T06         | All mines found                   | Enter in correct coordinates of all mine locations and reduce the mines left counter to 0 | Once all mines have been identified before the attempt counter has reached zero. The terminal is cleared and a grid will all the values are displayed A winning message will appear, congratulating the player and informs them how many attempts were left. The player is also asked to give the game another go by clicking on the Run Program button                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Pass         |
+| T07         | All attempts used                 | Enter in correct coordinates of non-mine locations and reduce the attempt counter to 0    | Once all attempts have been identified before the mines left counter has reached zero. The terminal is cleared and a grid will all the values are displayed A losing message will appear, asking the player to give the game another go by clicking on the Run Program button                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Pass         |
+| T08         | Run Program button                | Click Run Program button                                                                  | At any point during the game when the Run Program button is clicked. The terminal resets and returns the initial page as stated in T01                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Pass         |
+
 </details>
 
 ## __Deployment__
@@ -278,7 +257,7 @@ As the template for the front-end website design is pre-set. There are no wirefr
 
 1. Open an account with Heroku.
 
-2. On the home dahsboard of your account, select "New" then "Create new app".
+2. On the home dashboard of your account, select "New" then "Create new app".
 
 3. Create an unique app name, select the region and click create.
 
@@ -317,7 +296,7 @@ As the template for the front-end website design is pre-set. There are no wirefr
 
 ### __Code__
 
-* [AskPython](https://www.askpython.com/python/examples/create-minesweeper-using-python) - code on how to navigate between neighbouring cells was based on an exmaple fro this website.
+* [AskPython](https://www.askpython.com/python/examples/create-minesweeper-using-python) - code on how to navigate between neighboring cells was based on an example from this website.
 
 ### __Acknowledegements__
 
