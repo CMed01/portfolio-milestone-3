@@ -349,6 +349,7 @@ def main():
                         mines_left = mines_left - 1
                         display_values[x][y] = "M"
                         clear()
+                        clear()
                         display_grid(grid_size, display_values)
                         print("BOOM!!! You have found a mine, good hunting")
                         print(f"Number of attempts left: {life_counter}")
