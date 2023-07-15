@@ -286,9 +286,8 @@ def main():
         # checks validity of user input and returns error message
         # Checks is inut lenght is not 2
         if len(user_mine_guess) != 2:
-            print(
-                f"Please try again and enter two single \
-                    numbers between 1 and {grid_size}")
+            print("Try again")
+            print(f"Enter two numbers between 1 and {grid_size}")
         else:
             # Checks is values are intergers
             # if not then returns a Value Error
@@ -300,8 +299,8 @@ def main():
                 # > grid_size then returns an error message
                 if (user_input[0] < 1 or user_input[0] > grid_size or
                         user_input[1] < 1 or user_input[1] > grid_size):
-                    print(f"Please try again and enter two \
-                        single numbers between 1 and {grid_size}")
+                    print("Try again")
+                    print(f"Enter two numbers between 1 and {grid_size}")
                     continue
                 else:
                     # If numbers valid, then passed as index values
@@ -326,8 +325,8 @@ def main():
                         if mines_left == 0:
                             clear()
                             display_grid(grid_size, answer_grid)
-                            print(f"BOOM, BOOM, BOOM, you have found all the \
-                                mines with {life_counter} lives remaining")
+                            print("BOOM, BOOM, you have found all the mines")
+                            print(f"with {life_counter} lives remaining")
                             print("Well Done! Give the Mine Hunt another go")
                             game_over = True
 
@@ -347,16 +346,15 @@ def main():
                         # Then all lives user game over message printed
                         if life_counter == 0:
                             display_grid(grid_size, answer_grid)
-                            print("You have used all your attempts,\
-                                try again to find all the mines")
+                            print("You have used all your attempts")
+                            print("Try again to find all the mines")
                             game_over = True
             except ValueError:
-                print(f"Please try again and enter two \
-                    single numbers between 1 and {grid_size}")
+                print("Try again")
+                print(f"Enter two numbers between 1 and {grid_size}")
                 continue
 
 
-print("")
 print("Welcome to ChrisSweeper: MineHunter\n")
 
 # Stores the grid_size after user inputs value
@@ -380,6 +378,7 @@ answer_grid = reveal_answers(mine_grid)
 # Main game function called when terminal loaded and grid_size input recieved
 if __name__ == "__main__":
     try:
+        clear()
         main()
     except KeyboardInterrupt:
         print("The game has ended \n")
