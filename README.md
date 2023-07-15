@@ -251,6 +251,21 @@ As the template for the front-end website design is pre-set. There are no wirefr
 
 </details>
 
+### __Debugging__
+The "clear terminal" function employed throughout my python code was working perfectly in the terminal of GitPod. However when deployed on Heroku the whole terminal was not being cleared. 
+
+Following a discussion with the tutor support team, I discovered that _when running a Python terminal game and deploying it to a platform like Heroku, the os.system("clear") command may not clear the entire terminal because Heroku runs your application in a virtualised environment and does not have direct access to the terminal. Heroku typically captures the output of my application and displays it in a web-based console or logs. So, the clear command will only clear the output within that specific console or log area, rather than the entire terminal._
+
+To get around this I had to stop reprinting the rules and game title as these would not be cleared when the game was running, preventing duplication of print statements at the top of the terminal.
+
+<details close>
+<summary>Heroku bug </summary>
+<br>
+
+![Heroku image](./readme-assets/bug_fix_1.png) 
+
+</details>
+
 ## __Deployment__
 
 ### __How this site was deployed__
@@ -300,4 +315,4 @@ As the template for the front-end website design is pre-set. There are no wirefr
 
 ### __Acknowledegements__
 
-I would like to express my gratitude to my mentor Brian Macharia, for his guidance, support and encouragement throughout my second project.
+I would like to express my gratitude to my mentor Brian Macharia, for his guidance, support and encouragement throughout my second project. I would also like to thank Joshua from the Code Institute support team for helping me to solve a rather frustrating bug when deploying my project to Heroku.
