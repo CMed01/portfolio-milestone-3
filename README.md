@@ -102,7 +102,10 @@ As the template for the front-end website design is pre-set. There are no wirefr
 ### __Surface (including Features)__
 
 #### __Features__
-* 
+* Initial screen
+* Grid display
+* Co-ordinate guess
+* Inout validity
 
 * Future
     * Add recursive function to expose all grid values with 0

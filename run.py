@@ -337,7 +337,7 @@ def main():
                     # if value -1 (i.e. mine) then mine counter reduced by 1
                     # display_value updated
                     # terminal cleared and updated grid displayed
-                    if mine_grid[x][y] == -1:
+                    elif mine_grid[x][y] == -1:
                         mines_left = mines_left - 1
                         display_values[x][y] = "M"
                         clear()
