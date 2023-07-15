@@ -259,6 +259,7 @@ def title():
     print("   first number is the x axis and second is th y axis")
     print("3. M = mine, number = number of surrounding mines")
     print("-------------------------------------------")
+    print("    ")
 
 
 def main():
