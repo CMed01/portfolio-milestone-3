@@ -242,6 +242,7 @@ def clear():
 
 
 def title():
+    clear()
     print("ChrisSweeper: Mine Hunter\n")
     print("Instructions:")
     print("")
@@ -305,7 +306,6 @@ def main():
                     print(f"Enter two numbers between 1 and {grid_size}")
                     continue
                 else:
-                    clear()
                     # If numbers valid, then passed as index values
                     x = user_input[0] - 1
                     y = user_input[1] - 1
@@ -327,7 +327,6 @@ def main():
                         # All mines have been found and winning message printed
                         if mines_left == 0:
                             clear()
-                            title()
                             display_grid(grid_size, answer_grid)
                             print("BOOM, BOOM, you have found all the mines")
                             print(f"with {life_counter} lives remaining")
@@ -383,7 +382,6 @@ answer_grid = reveal_answers(mine_grid)
 # Main game function called when terminal loaded and grid_size input recieved
 if __name__ == "__main__":
     try:
-        clear()
         main()
     except KeyboardInterrupt:
         print("The game has ended \n")
