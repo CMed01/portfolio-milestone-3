@@ -242,10 +242,16 @@ def clear():
 
 
 def title():
+    """
+    Prints the title of the game and intructions to the terminal
+    """
     clear()
     print("ChrisSweeper: Mine Hunter\n")
     print("Instructions:")
-    print("")
+    print("1. Find all the mines without using all lives")
+    print("2. Enter two numbers seperated by a space to reveal square")
+    print("   first number is the x axis and second is th y axis")
+    print("3. M = mine, number = number of surrounding mines")
     print("-------------------------------------------")
 
 
