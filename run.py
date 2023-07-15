@@ -76,13 +76,13 @@ def get_grid_size():
     to display grid and generate mines
     """
     while True:
-        grid_size = input("Please enter the game grd size (between 5-9):  ")
+        grid_input = input("Please enter the game grd size (between 5-9):  ")
 
-        if validate_grid_size(grid_size):
+        if validate_grid_size(grid_input):
             break
 
-    grid_size = int(grid_size)
-    return grid_size
+    grid = int(grid_input)
+    return grid
 
 
 def validate_grid_size(value):
@@ -98,14 +98,14 @@ def validate_grid_size(value):
         if value < 5 or value > 9:
             raise ValueError("Please enter a number between 5 and 9")
 
-    except ValueError as e:
-        print(f"Invalid data: {e}, please try again.\n")
+    except ValueError as error:
+        print(f"Invalid data: {error}, please try again.\n")
         return False
 
     return True
 
 
-def generate_grid_values(grid_size):
+def generate_grid_values(value):
     """
     Function passes grid_size and generate a nested list
     The number of nested list will depend on the grid_size
@@ -117,12 +117,12 @@ def generate_grid_values(grid_size):
     [0,0,0,0,0],
     [0,0,0,0,0]]
     """
-    grid_values = [[0 for x in range(grid_size)] for y in range(grid_size)]
+    grid_values = [[0 for x in range(value)] for y in range(value)]
 
     return grid_values
 
 
-def generate_random_mines(grid_values):
+def generate_random_mines(grid):
     """
     Function passes grid_values (which is a nested list)
     Grid_size value is used to generate 2 random numbers
@@ -145,14 +145,14 @@ def generate_random_mines(grid_values):
         x = num1 // grid_size
         y = num2 % grid_size
 
-        if grid_values[x][y] != -1:
+        if grid[x][y] != -1:
             counter += 1
-            grid_values[x][y] = -1
+            grid[x][y] = -1
 
-    return grid_values
+    return grid
 
 
-def update_grid_numbers(grid_values):
+def update_grid_numbers(value):
     """
     This function will pass the grid_values and using
     the range from grid_size as index numbers.
@@ -169,35 +169,35 @@ def update_grid_numbers(grid_values):
     for x in range(grid_size):
         for y in range(grid_size):
             # Passes index number to iterate through all grid_values
-            if grid_values[x][y] == -1:
+            if value[x][y] == -1:
                 continue
 
             # Check top grid space
-            if x >= 1 and grid_values[x-1][y] == -1:
-                grid_values[x][y] = grid_values[x][y] + 1
+            if x >= 1 and value[x-1][y] == -1:
+                value[x][y] = value[x][y] + 1
             # Check top-right grid space
-            if x >= 1 and y < grid_size-1 and grid_values[x-1][y+1] == -1:
-                grid_values[x][y] = grid_values[x][y] + 1
+            if x >= 1 and y < grid_size-1 and value[x-1][y+1] == -1:
+                value[x][y] = value[x][y] + 1
             # Check right grid space
-            if y < grid_size - 1 and grid_values[x][y+1] == -1:
-                grid_values[x][y] = grid_values[x][y] + 1
+            if y < grid_size - 1 and value[x][y+1] == -1:
+                value[x][y] = value[x][y] + 1
             # Check bottom-right grid space
             if (x < grid_size - 1 and y < grid_size-1 and
-                    grid_values[x+1][y+1] == -1):
-                grid_values[x][y] = grid_values[x][y] + 1
+                    value[x+1][y+1] == -1):
+                value[x][y] = value[x][y] + 1
             # Check bottom grid space
-            if x < grid_size - 1 and grid_values[x+1][y] == -1:
-                grid_values[x][y] = grid_values[x][y] + 1
+            if x < grid_size - 1 and value[x+1][y] == -1:
+                value[x][y] = value[x][y] + 1
             # Check bottom-left grid space
-            if x < grid_size - 1 and y >= 1 and grid_values[x+1][y-1] == -1:
-                grid_values[x][y] = grid_values[x][y] + 1
+            if x < grid_size - 1 and y >= 1 and value[x+1][y-1] == -1:
+                value[x][y] = value[x][y] + 1
             # Check left grid space
-            if y >= 1 and grid_values[x][y-1] == -1:
-                grid_values[x][y] = grid_values[x][y] + 1
+            if y >= 1 and value[x][y-1] == -1:
+                value[x][y] = value[x][y] + 1
             # Check top-left grid space
-            if x >= 1 and y >= 1 and grid_values[x-1][y-1] == -1:
-                grid_values[x][y] = grid_values[x][y] + 1
-    return grid_values
+            if x >= 1 and y >= 1 and value[x-1][y-1] == -1:
+                value[x][y] = value[x][y] + 1
+    return value
 
 
 def generate_display_values(value):
@@ -215,12 +215,12 @@ def generate_display_values(value):
     This will be used to display empty cells to the user
     """
 
-    display_values = [[" " for x in range(value)] for y in range(value)]
+    visible_grid = [[" " for x in range(value)] for y in range(value)]
 
-    return display_values
+    return visible_grid
 
 
-def reveal_answers(grid_values):
+def reveal_answers(grid):
     """
     This function passes the nested list grid_values
     This function will iterate through this nested list
@@ -233,10 +233,10 @@ def reveal_answers(grid_values):
 
     for x in range(grid_size):
         for y in range(grid_size):
-            if grid_values[x][y] == -1:
+            if grid[x][y] == -1:
                 answer_values[x][y] = "M"
             else:
-                answer_values[x][y] = grid_values[x][y]
+                answer_values[x][y] = grid[x][y]
 
     return answer_values
 
@@ -312,7 +312,7 @@ def main():
                     # if value -1 (i.e. mine) then mine counter reduced by 1
                     # display_value updated
                     # terminal cleared and updated grid displayed
-                    if grid_values[x][y] == -1:
+                    if mine_grid[x][y] == -1:
                         clear()
                         mines_left = mines_left - 1
                         display_values[x][y] = "M"
@@ -325,9 +325,9 @@ def main():
                         # All mines have been found and winning message printed
                         if mines_left == 0:
                             clear()
-                            display_grid(grid_size, answer_values)
+                            display_grid(grid_size, answer_grid)
                             print(f"BOOM, BOOM, BOOM, you have found all the \
-                                 mines with {life_counter} lives remaining")
+                                mines with {life_counter} lives remaining")
                             print("Well Done! Give the Mine Hunt another go")
                             game_over = True
 
@@ -338,7 +338,7 @@ def main():
                     else:
                         clear()
                         life_counter = life_counter - 1
-                        display_values[x][y] = grid_values[x][y]
+                        display_values[x][y] = mine_grid[x][y]
                         display_grid(grid_size, display_values)
                         print("Close, keep hunting for all those mines")
                         print(f"Number of attempts left: {life_counter}")
@@ -346,8 +346,8 @@ def main():
                         # After above, if life counter = 0
                         # Then all lives user game over message printed
                         if life_counter == 0:
-                            display_grid(grid_size, answer_values)
-                            print("You have used all your attempts, \
+                            display_grid(grid_size, answer_grid)
+                            print("You have used all your attempts,\
                                 try again to find all the mines")
                             game_over = True
             except ValueError:
@@ -363,19 +363,19 @@ print("Welcome to ChrisSweeper: MineHunter\n")
 grid_size = get_grid_size()
 
 # Generate initial grid_values
-grid_values = generate_grid_values(grid_size)
-
-# Update grid_values after mines generated
-grid_values = generate_random_mines(grid_values)
-
-# Updates remaining gird values
-grid_values = update_grid_numbers(grid_values)
+initial_grid = generate_grid_values(grid_size)
 
 # Generate values to be displayed to user
 display_values = generate_display_values(grid_size)
 
+# Update grid_values after mines generated
+grid_and_mine_values = generate_random_mines(initial_grid)
+
+# Updates remaining gird values
+mine_grid = update_grid_numbers(grid_and_mine_values)
+
 # Updates grid_values to be displayed when game over or won
-answer_values = reveal_answers(grid_values)
+answer_grid = reveal_answers(mine_grid)
 
 # Main game function called when terminal loaded and grid_size input recieved
 if __name__ == "__main__":
