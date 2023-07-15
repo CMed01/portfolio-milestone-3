@@ -21,13 +21,6 @@ def display_grid(square, mines):
     3rd row =    |_____|
     ? = mine_value, this will either be blank, number or M
     """
-    clear()
-    print("ChrisSweeper: Mine Hunter\n")
-    print("-------------------------------------------")
-    print("Instructions:")
-    print("")
-    print("-------------------------------------------")
-
     # Prints header row from the width paraeter
     # Starting at number 1
     row = "   "
@@ -248,6 +241,13 @@ def clear():
     os.system("clear")
 
 
+def title():
+    print("ChrisSweeper: Mine Hunter\n")
+    print("Instructions:")
+    print("")
+    print("-------------------------------------------")
+
+
 def main():
     """
     This function contains the main game logic and is called when the terminal
@@ -273,6 +273,8 @@ def main():
     game_over = False
     life_counter = grid_size * 2
     mines_left = grid_size
+
+    title()
 
     display_grid(grid_size, display_values)
     print(f"Number of attempts left: {life_counter}")
@@ -315,6 +317,7 @@ def main():
                         clear()
                         mines_left = mines_left - 1
                         display_values[x][y] = "M"
+                        title()
                         display_grid(grid_size, display_values)
                         print("BOOM!!! You have found a mine, good hunting")
                         print(f"Number of attempts left: {life_counter}")
@@ -324,6 +327,7 @@ def main():
                         # All mines have been found and winning message printed
                         if mines_left == 0:
                             clear()
+                            title()
                             display_grid(grid_size, answer_grid)
                             print("BOOM, BOOM, you have found all the mines")
                             print(f"with {life_counter} lives remaining")
@@ -338,6 +342,7 @@ def main():
                         clear()
                         life_counter = life_counter - 1
                         display_values[x][y] = mine_grid[x][y]
+                        title()
                         display_grid(grid_size, display_values)
                         print("Close, keep hunting for all those mines")
                         print(f"Number of attempts left: {life_counter}")
@@ -345,6 +350,7 @@ def main():
                         # After above, if life counter = 0
                         # Then all lives user game over message printed
                         if life_counter == 0:
+                            clear()
                             display_grid(grid_size, answer_grid)
                             print("You have used all your attempts")
                             print("Try again to find all the mines")
