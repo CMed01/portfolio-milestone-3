@@ -76,7 +76,7 @@ def get_grid_size():
     to display grid and generate mines
     """
     while True:
-        grid_input = input("Please enter the game grd size (between 5-9):  ")
+        grid_input = input("Please enter the game grd size (between 5-9):\n")
 
         if validate_grid_size(grid_input):
             break
@@ -281,7 +281,7 @@ def main():
     # While loop for game function
     while game_over is not True:
         # User input as coordinates
-        user_mine_guess = input("Enter the coordinates here:  ").split()
+        user_mine_guess = input("Enter the coordinates here:\n").split()
 
         # checks validity of user input and returns error message
         # Checks is inut lenght is not 2
