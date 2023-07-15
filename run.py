@@ -1,10 +1,6 @@
 """
-ChriSweeper: Mine Hunter game
-
-Following code creates a game where the user needs to find all
-available mines on a randomly generated grid
+Imports
 """
-
 import random
 import os
 
@@ -248,7 +244,7 @@ def clear():
     """
     Clears the terminal
     """
-    os.system("clear")
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def title():
