@@ -32,12 +32,12 @@ Happy coding!
 
 
 # __Portfolio Project 3 - Python__
-## __ChriSweeper: Mine Hunter__
-![ChriSweeper: Mine Hunter]()
+## __ChrisSweeper: Mine Hunter__
+![ChrisSweeper: Mine Hunter]()
 
 ### __Demo__
 
-The live site can be viewed here - [ChriSweeper: Mine Hunter](https://chrisweeper-minehunter-70712a3a8751.herokuapp.com/)
+The live site can be viewed here - [ChrisSweeper: Mine Hunter](https://chrisweeper-minehunter-70712a3a8751.herokuapp.com/)
 
 Github repository can be viewed here - [CMed01/portfolio-milestone-3](https://github.com/CMed01/portfolio-milestone-3)
 
@@ -59,24 +59,48 @@ Reasons for the site:
 
 #### __User Stories__
 * As a user I want to be able to:
+    * Easily understand the main purpose of the website.
+    * Easily navigate the website to find and intereact with the content.
+    * Easily understand the instructions of the game.
+    * Specify the size of the mine grid before starting the game, adjusting the difficulty.
+    * Generate a game grid with randomly generated mines equal to the width of the grid. The values of each grid square will initially be hidden from view
+    * View the number of mines left to detect and the number of attempts remaining to locate all the mines
+    * Input co-ordinates to reveal grid squares and gain knowledge of the number of mines in the surrounding grid squares.
+    * Gain information of the number of mines surrounding
+    * View the complete grid layout and location of mines and remaining square values when either all mines have been found or attempts have run out.
 
+* As a developer I want:
+    * The user to be able to change the level of difficulty by allowing them functionailty to determine the size of the grid.
+    * The user to have limited number of attempts to find all mines, so that the game presents a challenging and engaging experience.
+    * The user to be able to track their progress, with information detailing the number of mines and lives remaining as well an updated mine grid.
 
 ### __Scope__
 Functionally the site must be:
-* 
+* Easy to navigate.
+* Input functionality working.
+* The terminal to clear after each successful input.
+* Clear information given if incorrect inputs are made.
 
 Content should include the following:
-* 
+* Provide the user with the rules of the game.
+* Provide interactive functinaility to play the game.
 
 ### __Structure__
+Based on the content required in the scope of this projct, this website will consist of one page. The page will contain a simple structure with an embedded terminal. Within the terminal will be the interactive function of this game.
 
+### __Skelton (Lucidhart)__
+As the template for the front-end website design is pre-set. There are no wireframes included in this readme. [Lucidchart](https://www.lucidchart.com/) was used to create the process map for the game logic.
 
-### __Skelton (Lucid Chart)__
+<details open>
+<summary>Process map </summary>
+<br>
 
+![Game process map](./readme-assets/process-map.png)
+
+</details>
 
 ### __Surface (including Features)__
 
- 
 #### __Features__
 * 
 

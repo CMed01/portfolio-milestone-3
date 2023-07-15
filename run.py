@@ -259,6 +259,10 @@ def title():
     print("   first number is the x axis and second is th y axis")
     print("3. M = mine, number = number of surrounding mines")
     print("-------------------------------------------")
+
+    # Added extra blank print statement so that the above remains available
+    # in terminal on deployed website.
+    # os.system("clear") does not clear the full terminal in Heroku.
     print("    ")
 
 
@@ -345,6 +349,7 @@ def main():
                             print("BOOM, BOOM, you have found all the mines")
                             print(f"with {life_counter} lives remaining")
                             print("Well Done! Give the Mine Hunt another go")
+                            print("Click Run Program button to try again")
                             game_over = True
 
                     # if value != -1
@@ -365,7 +370,7 @@ def main():
                             clear()
                             display_grid(grid_size, answer_grid)
                             print("You have used all your attempts")
-                            print("Try again to find all the mines")
+                            print("Click Run Program button to try again")
                             game_over = True
             except ValueError:
                 print("Try again")
