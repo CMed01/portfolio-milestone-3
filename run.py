@@ -331,7 +331,11 @@ def main():
                     # Valid input values used to iterate over grid_values
                     # Checks if coordinates already guessed
                     if display_values[x][y] != " ":
+                        clear()
+                        display_grid(grid_size, display_values)
                         print("Already guessed this one")
+                        print(f"Number of attempts left: {life_counter}")
+                        print(f"Mines left: {(mines_left)}")
                         continue
 
                     # if value -1 (i.e. mine) then mine counter reduced by 1
