@@ -323,7 +323,7 @@ def main():
                 if (user_input[0] < 1 or user_input[0] > grid_size or
                         user_input[1] < 1 or user_input[1] > grid_size):
                     clear()
-                    display_grid(grid_size, display_values)    
+                    display_grid(grid_size, display_values)
                     print("Try again")
                     print(f"Enter two numbers between 1 and {grid_size}")
                     continue
