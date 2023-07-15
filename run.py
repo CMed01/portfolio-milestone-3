@@ -328,6 +328,11 @@ def main():
                     x = user_input[0] - 1
                     y = user_input[1] - 1
 
+                    # Checks if coordinates already guessed
+                    if display_values[x][y] != " ":
+                        print("Already guessed this one")
+                        continue
+
                     # Valid input values used to iterate over grid_values
                     # if value -1 (i.e. mine) then mine counter reduced by 1
                     # display_value updated
