@@ -70,7 +70,7 @@ def get_grid_size():
     Once validated valid, value is stored in a variable grid
     """
     while True:
-        grid_input = input("Please enter the game grd size (between 5-9):\n")
+        grid_input = input("Please enter the game grid size (between 5-9):\n")
 
         if validate_grid_size(grid_input):
             break
@@ -328,12 +328,12 @@ def main():
                     x = user_input[0] - 1
                     y = user_input[1] - 1
 
+                    # Valid input values used to iterate over grid_values
                     # Checks if coordinates already guessed
                     if display_values[x][y] != " ":
                         print("Already guessed this one")
                         continue
 
-                    # Valid input values used to iterate over grid_values
                     # if value -1 (i.e. mine) then mine counter reduced by 1
                     # display_value updated
                     # terminal cleared and updated grid displayed
@@ -383,7 +383,8 @@ def main():
                 continue
 
 
-print("Welcome to ChrisSweeper: MineHunter\n")
+print("Welcome to ChrisSweeper: MineHunter")
+print("Select your grid size and difficulty\n")
 
 # Stores the grid_size after user inputs value
 grid_size = get_grid_size()
