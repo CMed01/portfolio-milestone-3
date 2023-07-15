@@ -5,10 +5,6 @@
 import random
 import os
 
-class Board:
-    def __init__(self, square):
-        self.square = square
-    
 
 def display_grid(square, grid):
     """
@@ -173,11 +169,18 @@ def display_values(value):
     return display_values
 
 def reveal_answers(grid_values):
+    """
+    """
+    answer_values = [[" " for x in range(grid_size)] for y in range(grid_size)]
+
     for x in range(grid_size):
         for y in range(grid_size):
             if grid_values[x][y] == -1:
-                grid_values[x][y] = "M"
-    return 
+                answer_values[x][y] = "M"
+            else:
+                answer_values[x][y] = grid_values[x][y]
+
+    return answer_values
 
 
 def clear():
@@ -273,7 +276,7 @@ grid_values = generate_random_mines(grid_values)
 grid_values = update_grid_numbers(grid_values)
 display_values = display_values(grid_size)
 
-# answer_values = reveal_answers(grid_values)
+answer_values = reveal_answers(grid_values)
 
 
 print("Welcome to ChrisSweeper:MineHunter")
