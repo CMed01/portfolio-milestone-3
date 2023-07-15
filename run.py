@@ -305,6 +305,7 @@ def main():
                     print(f"Enter two numbers between 1 and {grid_size}")
                     continue
                 else:
+                    clear()
                     # If numbers valid, then passed as index values
                     x = user_input[0] - 1
                     y = user_input[1] - 1
@@ -314,7 +315,6 @@ def main():
                     # display_value updated
                     # terminal cleared and updated grid displayed
                     if mine_grid[x][y] == -1:
-                        clear()
                         mines_left = mines_left - 1
                         display_values[x][y] = "M"
                         title()
@@ -339,7 +339,6 @@ def main():
                     # display_value updated
                     # terminal cleared and updated grid displayed
                     else:
-                        clear()
                         life_counter = life_counter - 1
                         display_values[x][y] = mine_grid[x][y]
                         title()
