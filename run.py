@@ -1,19 +1,17 @@
-"""
-Imports
-"""
+"""Imports"""
+
 import random
 import os
 
 
 def display_grid(square, mines):
-    """
-    Displays game grid to terminal and inserts values
+    """Displays game grid to terminal and inserts values
 
-    Function takes two parameters
-    square =which is determined by the user - value between 5 and 9
-    mines = display value depending on stage of game
-    Grid is outlined by numbers identifying the row and column
-    Remaining game grid consists of three rows that are repeated
+    Function takes two parameters:
+    square = which is determined by the user - value between 5 and 9.
+    mines = display value depending on stage of game.
+    Grid is outlined by numbers identifying the row and column.
+    Remaining game grid consists of three rows that are repeated.
     Using for loop in a for loop on both row and column
     as per the square parameter:
     1st row =    |     |
@@ -21,6 +19,7 @@ def display_grid(square, mines):
     3rd row =    |_____|
     ? = mine_value, this will either be blank, number or M
     """
+
     # Prints header row from the width parameter
     # Starting at number 1
     row = "   "
@@ -30,7 +29,7 @@ def display_grid(square, mines):
     print(row)
 
     # Prints the remainder of the game grid
-    # row-std = standard
+    # row-std = row standard
     for row_std in range(square):
         # Prints the bottom border for the header
         row = "    "
@@ -62,12 +61,11 @@ def display_grid(square, mines):
 
 
 def get_grid_size():
-    """
-    Stores the a value of the grid following user input
+    """Stores the a value of the grid following user input
 
-    User inputs a value between 5 and 9
-    Data input is validated using a separate function
-    Once validated valid, value is stored in a variable grid
+    User inputs a value between 5 and 9.
+    Data input is validated using a separate function.
+    Once validated valid, value is stored in a variable grid.
     """
     while True:
         grid_input = input("Please enter the game grid size (between 5-9):\n")
@@ -80,8 +78,7 @@ def get_grid_size():
 
 
 def validate_grid_size(value):
-    """
-    Validates the number inputted for grid size
+    """Validates the number inputted for grid size
 
     Input is valid if an integer and between 5 and 9
     If value is not valid, a value error is displayed and user can retry
@@ -100,11 +97,10 @@ def validate_grid_size(value):
 
 
 def generate_grid_values(value):
-    """
-    Generates a nested list, with values of 0
+    """Generates a nested list, with values of 0
 
     Function passes grid_size and generates a nested list
-    The number of nested liss and the values inside each list
+    The number of nested lists and the values inside each list
     will depend on the grid_size. I.e. if grid_size = 5
     then list will be 5 lists of 5 numbers each with value of 0
     [[0,0,0,0,0],
@@ -119,8 +115,7 @@ def generate_grid_values(value):
 
 
 def generate_random_mines(grid):
-    """
-    Updates selected values of nested list with values of -1
+    """Updates selected values of nested list with values of -1
 
     Function passes grid_values (which is a nested list)
     Two random numbers are generated and used as index numbers
@@ -151,8 +146,7 @@ def generate_random_mines(grid):
 
 
 def update_grid_numbers(value):
-    """
-    Updates nested list with a value showing how many mines are surrounding
+    """Updates nested list with a value showing how many mines are surrounding
 
     This function will pass the grid_values and using the range from
     grid_size as index numbers.
@@ -197,8 +191,7 @@ def update_grid_numbers(value):
 
 
 def generate_display_values(value):
-    """
-    Generates a nested list, with values of " "
+    """Generates a nested list, with values of " "
 
     Function passes grid_size and generates a nested list.
     The number of nested lists and the values inside each list will
@@ -219,8 +212,7 @@ def generate_display_values(value):
 
 
 def reveal_answers(grid):
-    """
-    Generates a nested list, with values of M and numbers
+    """Generates a nested list, with values of M and numbers
 
     This function passes the nested list grid_values and iterates through it
     using the grid_size value to generate index numbers.
@@ -241,16 +233,14 @@ def reveal_answers(grid):
 
 
 def clear():
-    """
-    Clears the terminal
-    """
+    """Clears the terminal"""
+
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def title():
-    """
-    Prints the title of the game and instructions to the terminal
-    """
+    """Prints the title of the game and instructions to the terminal"""
+
     clear()
     print("Instructions:")
     print("1. Find all the mines without using all lives")
@@ -265,8 +255,7 @@ def title():
 
 
 def main():
-    """
-    Main function containing game logic
+    """Main function containing game logic
 
     Called to the terminal when loaded after grid_size input from user.
     The game loop runs when the game_over variable is False.
